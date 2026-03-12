@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>The Book — FedEthics</title>
+  <base href="https://fedethics.ca/">
+  <link rel="canonical" href="https://fedethics.ca/book/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Constitutional AI for the Public Service — The definitive guide for Canadian government executives navigating AI governance, ethics, and digital transformation.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Montserrat:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy:      #1a2f5e;
+      --navy-deep: #0f1e3d;
+      --royal:     #1f4a9c;
+      --gold:      #c9a84c;
+      --gold-lt:   #e8d08a;
+      --cream:     #f9f6f0;
+      --slate:     #4a5568;
+      --white:     #ffffff;
+      --border:    #dde3ef;
+      --tag-bg:    #eef2fb;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--cream); color: var(--navy-deep); line-height: 1.7; }
+
+    /* HEADER */
+    .site-header { background: var(--white); border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(26,47,94,.08); }
+    .header-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .logo-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-box { width: 42px; height: 42px; background: var(--royal); border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+    .logo-box svg { width: 22px; height: 22px; fill: none; stroke: var(--gold); stroke-width: 2; }
+    .logo-text { font-size: 20px; font-weight: 700; color: var(--navy); }
+    nav ul { list-style: none; display: flex; gap: 4px; }
+    nav a { text-decoration: none; font-size: 13px; font-weight: 500; color: var(--slate); padding: 7px 13px; border-radius: 4px; transition: background .2s, color .2s; }
+    nav a:hover { background: var(--tag-bg); color: var(--royal); }
+    nav a.active { color: var(--royal); font-weight: 700; }
+
+    /* HERO */
+    .hero { background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 60%, #1a3a7a 100%); padding: 70px 24px 80px; position: relative; overflow: hidden; }
+    .hero::after { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E"); pointer-events: none; }
+    .gold-bar { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--gold), var(--gold-lt), var(--gold)); }
+    .hero-inner { max-width: 680px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+    .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(30px, 5vw, 52px); font-weight: 900; color: var(--white); line-height: 1.12; margin-bottom: 18px; }
+    .hero-title em { font-style: italic; color: var(--gold-lt); }
+    .hero-sub { font-family: 'Source Serif 4', serif; font-size: 17px; font-weight: 300; color: rgba(255,255,255,.75); margin-bottom: 36px; line-height: 1.65; }
+    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-gold { background: var(--gold); color: var(--navy-deep); font-weight: 700; font-size: 14px; padding: 13px 28px; border-radius: 4px; text-decoration: none; transition: background .2s; }
+    .btn-gold:hover { background: var(--gold-lt); }
+    .btn-ghost { border: 2px solid rgba(255,255,255,.35); color: var(--white); font-weight: 600; font-size: 14px; padding: 13px 28px; border-radius: 4px; text-decoration: none; transition: border-color .2s; }
+    .btn-ghost:hover { border-color: var(--gold); }
+
+    /* SECTIONS */
+    section { padding: 72px 24px; }
+    .wrap { max-width: 1100px; margin: 0 auto; }
+    .sec-label { font-size: 10px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .sec-title { font-family: 'Playfair Display', serif; font-size: clamp(24px, 3vw, 38px); font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 12px; }
+    .sec-lead { font-family: 'Source Serif 4', serif; font-size: 16px; font-weight: 300; color: var(--slate); max-width: 580px; line-height: 1.7; }
+    .divider { width: 48px; height: 3px; background: var(--gold); margin: 16px 0 40px; }
+
+    /* ASSETS GRID */
+    .assets-bg { background: var(--white); }
+    .assets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .card { background: var(--cream); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s; }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(26,47,94,.1); }
+    .card-head { padding: 24px 24px 0; display: flex; align-items: flex-start; gap: 12px; }
+    .icon { width: 44px; height: 44px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .icon svg { width: 22px; height: 22px; fill: none; stroke-width: 2; }
+    .ic-blue  { background: #deeaff; } .ic-blue  svg { stroke: var(--royal); }
+    .ic-gold  { background: #fdf3dc; } .ic-gold  svg { stroke: #b8860b; }
+    .ic-amber { background: #fef3c7; } .ic-amber svg { stroke: #b45309; }
+    .ic-navy  { background: #dde7f5; } .ic-navy  svg { stroke: var(--navy); }
+    .badge { margin-left: auto; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; white-space: nowrap; }
+    .b-blue  { background: #deeaff; color: var(--royal); }
+    .b-gold  { background: #fdf3dc; color: #b8860b; }
+    .b-green { background: #d4f5e9; color: #1a7a4a; }
+    .b-new   { background: #ede9fe; color: #6d28d9; }
+    .card-body { padding: 16px 24px 20px; flex: 1; display: flex; flex-direction: column; }
+    .card-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 10px; line-height: 1.3; }
+    .card-desc { font-size: 13px; color: var(--slate); line-height: 1.65; flex: 1; }
+    .card-foot { padding: 14px 24px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .persona { font-size: 11px; color: var(--slate); }
+    .cta-link { font-size: 12px; font-weight: 700; color: var(--royal); text-decoration: none; padding: 7px 14px; border: 2px solid var(--royal); border-radius: 4px; transition: background .2s, color .2s; white-space: nowrap; }
+    .cta-link:hover { background: var(--royal); color: var(--white); }
+
+    /* SCORECARD TOOL */
+    .tool-bg { background: var(--cream); }
+    .tool-box { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 32px; margin-top: 40px; }
+    .tool-head { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+    .tool-head-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--navy); }
+    .tool-head-sub { font-size: 12px; color: var(--slate); margin-top: 2px; }
+    .decide-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .crit { background: var(--cream); border: 1px solid var(--border); border-radius: 8px; padding: 16px; transition: border-color .2s; }
+    .crit.on { border-color: var(--royal); background: var(--tag-bg); }
+    .crit-letter { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; color: var(--royal); line-height: 1; }
+    .crit-word { font-size: 10px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 1px; margin: 3px 0 5px; }
+    .crit-desc { font-size: 11px; color: var(--slate); line-height: 1.45; }
+    .dots { display: flex; gap: 5px; margin-top: 10px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--border); cursor: pointer; transition: background .15s, border-color .15s; }
+    .dot.filled { background: var(--royal); border-color: var(--royal); }
+    .dot.hi { background: var(--gold); border-color: var(--gold); }
+    .result { margin-top: 22px; padding: 18px 22px; background: var(--cream); border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; gap: 20px; }
+    .gauge { position: relative; width: 76px; height: 76px; flex-shrink: 0; }
+    .gauge svg { width: 76px; height: 76px; }
+    .g-bg { fill: none; stroke: var(--border); stroke-width: 7; }
+    .g-fill { fill: none; stroke-width: 7; stroke-linecap: round; stroke-dasharray: 220; transition: stroke-dashoffset .6s, stroke .4s; transform-origin: center; transform: rotate(-90deg); }
+    .gauge-label { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .gauge-pct { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 900; color: var(--navy); line-height: 1; }
+    .gauge-unit { font-size: 9px; font-weight: 600; color: var(--slate); }
+    .result-verdict { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .result-note { font-size: 12px; color: var(--slate); line-height: 1.5; }
+    .tool-hint { text-align: center; margin-top: 14px; font-size: 12px; color: var(--slate); }
+    .tool-hint a { color: var(--royal); font-weight: 700; text-decoration: none; }
+
+    /* NEWSLETTER */
+    .nl-bg { background: var(--navy); }
+    .nl-inner { max-width: 620px; margin: 0 auto; text-align: center; }
+    .nl-inner .sec-label { color: var(--gold); }
+    .nl-inner .sec-title { color: var(--white); }
+    .nl-inner .sec-lead { color: rgba(255,255,255,.65); margin: 0 auto 32px; }
+    .nl-inner .divider { margin: 16px auto 32px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 28px; }
+    .chip { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.75); font-size: 12px; padding: 5px 13px; border-radius: 20px; }
+    .form-row { display: flex; border-radius: 5px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,.3); max-width: 440px; margin: 0 auto; }
+    .email-in { flex: 1; padding: 14px 18px; font-family: 'Montserrat', sans-serif; font-size: 14px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); border-right: none; color: var(--white); outline: none; }
+    .email-in::placeholder { color: rgba(255,255,255,.35); }
+    .email-btn { background: var(--gold); color: var(--navy-deep); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; padding: 14px 20px; border: none; cursor: pointer; transition: background .2s; }
+    .email-btn:hover { background: var(--gold-lt); }
+    .form-note { font-size: 11px; color: rgba(255,255,255,.35); margin-top: 10px; }
+    #ok-msg { display: none; margin-top: 18px; padding: 14px 20px; background: rgba(201,168,76,.15); border: 1px solid var(--gold); border-radius: 6px; color: var(--gold-lt); font-size: 14px; font-weight: 600; }
+
+    /* FOOTER */
+    .gold-strip { height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-lt), var(--gold)); }
+    footer { background: var(--navy-deep); color: var(--white); padding: 44px 24px 28px; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    .footer-links-row { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links-row a { font-size: 13px; color: rgba(255,255,255,.5); text-decoration: none; transition: color .2s; }
+    .footer-links-row a:hover { color: var(--white); }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,.3); }
+    .footer-socials { display: flex; gap: 10px; }
+    .soc { width: 34px; height: 34px; background: rgba(255,255,255,.07); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: background .2s; }
+    .soc:hover { background: var(--gold); }
+    .soc svg { width: 15px; height: 15px; fill: none; stroke: var(--white); stroke-width: 2; }
+
+    @media (max-width: 700px) {
+      .assets-grid { grid-template-columns: 1fr; }
+      .decide-grid { grid-template-columns: repeat(2, 1fr); }
+      nav ul { display: none; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+
+    @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+    .fu { animation: fadeUp .6s ease both; }
+    .d1 { animation-delay: .1s; }
+    .d2 { animation-delay: .2s; }
+    .d3 { animation-delay: .3s; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="https://fedethics.ca/" class="logo-wrap">
+      <div class="logo-box">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <span class="logo-text">FedEthics</span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="https://fedethics.ca/">Home</a></li>
+        <li><a href="https://fedethics.ca/Our-story/">Our story</a></li>
+        <li><a href="https://fedethics.ca/Core-capabilities/">Core capabilities</a></li>
+        <li><a href="https://fedethics.ca/Contacts/">Contacts</a></li>
+        <li><a href="https://fedethics.ca/Book/" class="active">Book</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="gold-bar"></div>
+  <div class="hero-inner">
+    <p class="eyebrow fu">New Release — Available Now</p>
+    <h1 class="hero-title fu d1">Constitutional AI<br><em>for the Public Service</em></h1>
+    <p class="hero-sub fu d2">The definitive executive guide for Canadian government leaders navigating AI governance, ethical data systems, and parliamentary accountability.</p>
+    <div class="hero-btns fu d3">
+      <a href="#get-book" class="btn-gold">Order Your Copy</a>
+      <a href="#resources" class="btn-ghost">Explore Free Resources</a>
+    </div>
+  </div>
+</section>
+
+<!-- DIGITAL ASSETS -->
+<section class="assets-bg" id="resources">
+  <div class="wrap">
+    <p class="sec-label">Exclusive Digital Resources</p>
+    <h2 class="sec-title">Tools to Apply the Book, Not Just Read It</h2>
+    <div class="divider"></div>
+    <p class="sec-lead">Four practical assets — available free to readers at fedethics.ca/book.</p>
+
+    <div class="assets-grid" style="margin-top:36px;">
+
+      <!-- 1. 90-Day Launchpad -->
+      <div class="card">
+        <div class="card-head">
+          <div class="icon ic-blue">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <span class="badge b-blue">Editable Template</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">The 90-Day Constitutional AI Launchpad</h3>
+          <p class="card-desc">An editable workbook — available as a Google Doc or Notion template — that guides an executive and their team through the first 90 days of implementing a constitutional AI framework. Combines the 90-day roadmaps from Chapters 1, 2, 4, and 7 into a single customizable project plan with prompts for key decisions and stakeholder sign-offs.</p>
+        </div>
+        <div class="card-foot">
+          <span class="persona">ADMs · Directors General · Policy Directors</span>
+          <a href="#newsletter" class="cta-link">Get Template →</a>
+        </div>
+      </div>
+
+      <!-- 3. DECIDE-PLUS Scorecard -->
+      <div class="card">
+        <div class="card-head">
+          <div class="icon ic-gold">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <span class="badge b-gold">Interactive Tool</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">DECIDE-PLUS™ Executive Decision Scorecard</h3>
+          <p class="card-desc">A one-page digital scorecard that operationalizes the DECIDE-PLUS™ methodology. Score a pending AI decision against criteria like evidence standards, constitutional justification, and parliamentary preparedness for an instant visual health check. Try the live preview below.</p>
+        </div>
+        <div class="card-foot">
+          <span class="persona">Deputy Ministers · ADMs</span>
+          <a href="#scorecard" class="cta-link">Try Preview ↓</a>
+        </div>
+      </div>
+
+      <!-- 4. Case Briefs Library -->
+      <div class="card">
+        <div class="card-head">
+          <div class="icon ic-amber">
+            <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          </div>
+          <span class="badge b-new">Growing Library</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Library of "Constitutional Moments" Case Briefs</h3>
+          <p class="card-desc">A growing library of 1-page anonymized case briefs. Each brief details a specific challenge (integrating legacy data, responding to a privacy commissioner's inquiry), the constitutional principle at play, and how a framework from the book was applied to navigate it.</p>
+        </div>
+        <div class="card-foot">
+          <span class="persona">All Public Servants · Policy Analysts</span>
+          <a href="#newsletter" class="cta-link">Browse Library →</a>
+        </div>
+      </div>
+
+      <!-- 8. Newsletter -->
+      <div class="card" style="border-color: var(--royal);">
+        <div class="card-head">
+          <div class="icon ic-navy">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <span class="badge b-green">Bi-Monthly</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">The Constitutional AI Briefing</h3>
+          <p class="card-desc">A curated email newsletter that tracks the book's ideas in the real world — new international policies (EU AI Act, UK ATRS), summaries of parliamentary committee reports, and academic papers on algorithmic fairness. A curated intelligence source, not a book summary.</p>
+        </div>
+        <div class="card-foot">
+          <span class="persona">Policy Wonks · Academics · Foresight Leads</span>
+          <a href="#newsletter" class="cta-link">Subscribe Free →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SCORECARD PREVIEW -->
+<section class="tool-bg" id="scorecard">
+  <div class="wrap">
+    <p class="sec-label">Interactive Preview</p>
+    <h2 class="sec-title">Try the DECIDE-PLUS™ Scorecard</h2>
+    <div class="divider"></div>
+    <p class="sec-lead">Rate your AI initiative across 8 constitutional criteria. Your readiness score updates live.</p>
+
+    <div class="tool-box">
+      <div class="tool-head">
+        <div class="icon ic-gold">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <div class="tool-head-title">DECIDE-PLUS™ Executive Decision Scorecard</div>
+          <div class="tool-head-sub">Click the dots to score each criterion from 1 (low) to 5 (high).</div>
+        </div>
+      </div>
+
+      <div class="decide-grid" id="decide-grid"></div>
+
+      <div class="result" id="result">
+        <div class="gauge">
+          <svg viewBox="0 0 76 76">
+            <circle class="g-bg" cx="38" cy="38" r="32"/>
+            <circle class="g-fill" id="g-fill" cx="38" cy="38" r="32" stroke="var(--royal)" stroke-dashoffset="151"/>
+          </svg>
+          <div class="gauge-label">
+            <span class="gauge-pct" id="g-pct">50%</span>
+            <span class="gauge-unit">Score</span>
+          </div>
+        </div>
+        <div>
+          <div class="result-verdict" id="r-verdict">Proceed with Caution</div>
+          <div class="result-note" id="r-note">Moderate constitutional readiness. Address gaps in evidence standards and parliamentary preparedness before full deployment.</div>
+        </div>
+      </div>
+      <p class="tool-hint">Simplified preview. <a href="#newsletter">Download the full scorecard</a> for weighted scoring across all criteria.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER / CTA -->
+<section class="nl-bg" id="newsletter">
+  <div class="wrap nl-inner">
+    <p class="sec-label">Get Your Resources</p>
+    <h2 class="sec-title">Access All Four Assets Free</h2>
+    <div class="divider"></div>
+    <p class="sec-lead">Enter your work email to unlock the resource hub and receive the bi-monthly Constitutional AI Briefing.</p>
+    <div class="chips">
+      <span class="chip">✓ 90-Day Launchpad Template</span>
+      <span class="chip">✓ DECIDE-PLUS™ Full Scorecard</span>
+      <span class="chip">✓ Case Brief Library</span>
+      <span class="chip">✓ Constitutional AI Briefing</span>
+    </div>
+    <div class="form-row">
+      <input type="email" class="email-in" placeholder="your.name@canada.ca" id="email-in">
+      <button class="email-btn" onclick="handleSubmit()">UNLOCK</button>
+    </div>
+    <p class="form-note">No spam. Unsubscribe anytime. Handled under our privacy-preserving policy.</p>
+    <div id="ok-msg">✓ Check your inbox for your resource access link.</div>
+
+    <div style="margin-top:52px; padding-top:40px; border-top:1px solid rgba(255,255,255,.1);" id="get-book">
+      <p class="sec-label" style="color:var(--gold);">Order the Book</p>
+      <h2 class="sec-title" style="color:var(--white); margin-bottom:24px;">Available Now in Print & Digital</h2>
+      <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+        <a href="#" class="btn-gold" style="font-size:14px; padding:14px 30px;">Order on Amazon</a>
+        <a href="mailto:hello-bonjour@fedethics.ca" class="btn-ghost" style="font-size:14px; padding:14px 30px;">Bulk & Speaking Enquiries</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="gold-strip"></div>
+<footer>
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 <a href="https://fedethics.ca" style="color:rgba(255,255,255,.4);text-decoration:none;">fedethics.ca</a> — Canada</span>
+    <div class="footer-links-row">
+      <a href="https://fedethics.ca/">Home</a>
+      <a href="https://fedethics.ca/Our-story/">Our Story</a>
+      <a href="https://fedethics.ca/Core-capabilities/">Core Capabilities</a>
+      <a href="https://fedethics.ca/Book/">Book</a>
+      <a href="https://fedethics.ca/Contacts/">Contact</a>
+    </div>
+    <div class="footer-socials">
+      <a href="https://www.linkedin.com/company/fedethics-inc/" class="soc" title="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="mailto:hello-bonjour@fedethics.ca" class="soc" title="Email">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const criteria = [
+    { l:'D', w:'Define',         d:'Is the problem clearly defined with measurable outcomes?' },
+    { l:'E', w:'Evidence',       d:'Does adequate evidence support this AI approach?' },
+    { l:'C', w:'Constitutional', d:'Have Charter rights implications been assessed?' },
+    { l:'I', w:'Impact',         d:'Has an algorithmic impact assessment been completed?' },
+    { l:'D', w:'Defensible',     d:'Can this decision be defended at committee?' },
+    { l:'E', w:'Explainable',    d:"Is the system's logic explainable to citizens?" },
+    { l:'P', w:'Parliamentary',  d:'Is parliamentary preparedness documentation ready?' },
+    { l:'L', w:'Lifecycle',      d:'Is there a monitoring and audit plan post-deployment?' },
+  ];
+  const scores = new Array(criteria.length).fill(3);
+
+  function render() {
+    document.getElementById('decide-grid').innerHTML = criteria.map((c, i) => `
+      <div class="crit ${scores[i] > 0 ? 'on' : ''}">
+        <div class="crit-letter">${c.l}</div>
+        <div class="crit-word">${c.w}</div>
+        <div class="crit-desc">${c.d}</div>
+        <div class="dots">
+          ${[1,2,3,4,5].map(n => `<div class="dot ${scores[i]>=n?(scores[i]>=4?'hi':'filled'):''}" onclick="setScore(${i},${n})"></div>`).join('')}
+        </div>
+      </div>`).join('');
+    update();
+  }
+
+  function setScore(i, v) { scores[i] = v; render(); }
+
+  function update() {
+    const total = scores.reduce((a, b) => a + b, 0);
+    const pct   = Math.round(total / (criteria.length * 5) * 100);
+    const circ  = 2 * Math.PI * 32;
+    const off   = circ - (pct / 100) * circ;
+    const el    = document.getElementById('g-fill');
+    el.style.strokeDasharray  = circ;
+    el.style.strokeDashoffset = off;
+
+    let color, verdict, note;
+    if (pct >= 80) {
+      color='#1a7a4a'; verdict='Strong Constitutional Readiness';
+      note='Solid foundation across all criteria. Proceed with confidence and maintain ongoing monitoring per Chapter 7.';
+    } else if (pct >= 60) {
+      color='#c9a84c'; verdict='Proceed with Targeted Improvements';
+      note='Good foundation, but gaps in one or more criteria need attention before full deployment.';
+    } else if (pct >= 40) {
+      color='#d97706'; verdict='Significant Gaps — Pause and Remediate';
+      note='Multiple constitutional readiness gaps identified. Do not proceed to production until these are addressed.';
+    } else {
+      color='#b91c1c'; verdict='Critical Risks — Redesign Required';
+      note='Fundamental accountability gaps present. A full review using the complete DECIDE-PLUS™ scorecard is recommended.';
+    }
+
+    el.style.stroke = color;
+    document.getElementById('g-pct').textContent = pct + '%';
+    document.getElementById('r-verdict').textContent = verdict;
+    document.getElementById('r-verdict').style.color = color;
+    document.getElementById('r-note').textContent = note;
+  }
+
+  function handleSubmit() {
+    const el = document.getElementById('email-in');
+    if (!el.value || !el.value.includes('@')) { el.style.borderColor = '#b91c1c'; return; }
+    el.style.borderColor = '';
+    document.querySelector('.form-row').style.display = 'none';
+    document.getElementById('ok-msg').style.display = 'block';
+  }
+
+  render();
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.card').forEach(el => {
+    el.style.opacity='0'; el.style.transform='translateY(14px)';
+    el.style.transition='opacity .5s ease, transform .5s ease, box-shadow .2s';
+    obs.observe(el);
+  });
+</script>
+</body>
+</html>
