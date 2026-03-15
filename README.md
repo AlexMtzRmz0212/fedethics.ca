@@ -24,7 +24,7 @@
 - ![#ffffff](https://placehold.co/15x15/ffffff/ffffff.png) `border-light: rgba(255,255,255,0.15);`
 - ![#ffffff](https://placehold.co/15x15/ffffff/ffffff.png) `grid-line: rgba(255,255,255,0.03);`
 
-## [Current Version](index.html) follows the Web Content Accessibility Guidelines (WCAG):
+## [Version 3](Old/indexV3.html) follows the Web Content Accessibility Guidelines (WCAG):
 
 1. The Contrast Ratio Standard
 The goal is to ensure that users with visual impairments, including color blindness or low vision, can distinguish text from the background. Contrast is measured on a scale from 1:1 (white text on a white background) to 21:1 (black text on a white background).
@@ -98,3 +98,6 @@ Fix: Add a:focus, button:focus { outline: 3px solid var(--crimson-bright); }.
 - ![#ffffff](https://placehold.co/15x15/ffffff/ffffff.png) `border-light: rgba(255,255,255,0.2);`
 - ![#ffffff](https://placehold.co/15x15/ffffff/ffffff.png) `grid-line: rgba(255,255,255,0.03);`
 - ![#ffb347](https://placehold.co/15x15/ffb347/ffb347.png) `focus-outline: 4px solid #ffb347;`
+
+
+## [Current Version](index.html) includes Author Backgrounder

@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Celio Oliveira – FedEthics Backgrounder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    /* ---------- FEDETHICS SHARED DESIGN SYSTEM ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --navy-deep: #0a1a3a;
+      --navy-richer: #05122b;
+      --crimson: #ae1f2c;
+      --crimson-bright: #c62837;
+      --white: #ffffff;
+      --white-soft: #f0f0f0;
+      --white-muted: #d0d0d0;
+      --border-light: rgba(255,255,255,0.2);
+      --focus-outline: 4px solid #ffb347;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--navy-deep);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ---------- NAVIGATION RIBBON (From index.html) ---------- */
+    .site-header {
+      background: rgba(10, 26, 58, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--crimson);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-box {
+      width: 40px;
+      height: 40px;
+      background: var(--crimson);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-box svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--white);
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .logo-text {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+      font-family: 'Playfair Display', serif;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 6px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--white-soft);
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 8px 14px;
+      border-radius: 30px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    nav a:hover, nav a.active {
+      background: var(--crimson);
+      color: var(--white);
+    }
+
+    /* ---------- PDF ACTION RIBBON ---------- */
+    .pdf-ribbon {
+      background: var(--navy-richer);
+      border-bottom: 1px solid var(--border-light);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: flex-end;
+      position: sticky;
+      top: 72px; /* Sits right below the main header */
+      z-index: 900;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      border: 2px solid var(--white);
+      transition: background 0.2s, border-color 0.2s;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--crimson);
+      background: rgba(178,34,52,0.1);
+    }
+    
+    .btn-outline:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .btn-outline::before {
+      content: "📄";
+      font-size: 1.1rem;
+    }
+
+    /* ---------- BACKGROUNDER PDF CONTAINER ---------- */
+    .backgrounder-wrapper {
+      padding: 60px 24px;
+      background: var(--navy-deep);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--navy-richer);
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 40px;
+      gap: 32px;
+      border-bottom: 1px solid var(--border-light);
+      flex-wrap: wrap;
+    }
+
+    .profile-image-container {
+      width: 160px;
+      height: 190px;
+      background: var(--navy-deep);
+      border: 2px solid var(--crimson);
+      border-radius: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .profile-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .header-titles {
+      flex: 1;
+    }
+
+    .header-titles h1 {
+      font-size: 2.8rem;
+      margin: 0 0 8px 0;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .sec-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--crimson);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .subtitle {
+      font-weight: 300;
+      font-size: 0.95rem;
+      color: var(--white-muted);
+      border-left: 3px solid var(--crimson);
+      padding-left: 16px;
+      line-height: 1.6;
+    }
+
+    .short-bio {
+      max-width: 280px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 20px;
+      font-size: 0.85rem;
+      color: var(--white-soft);
+      flex-shrink: 0;
+    }
+
+    .short-bio h3 {
+      font-size: 1rem;
+      color: var(--crimson);
+      margin-bottom: 8px;
+      border-bottom: 1px solid var(--crimson);
+      display: inline-block;
+      padding-bottom: 3px;
+    }
+
+    /* main columns */
+    .main-content {
+      display: flex;
+    }
+
+    .section-header {
+      font-size: 1.4rem;
+      padding: 16px 24px;
+      margin: 0;
+      border-bottom: 1px solid var(--border-light);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .sidebar-left {
+      width: 35%;
+      border-right: 1px solid var(--border-light);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .content-pad {
+      padding: 32px 24px;
+    }
+
+    .presentation-topics {
+      background: var(--crimson);
+      color: var(--white);
+      font-weight: 600;
+      padding: 10px 16px;
+      margin: 30px 0 15px 0;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.8rem;
+    }
+
+    .sidebar-left ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar-left li {
+      margin-bottom: 16px;
+      padding-left: 20px;
+      position: relative;
+      font-size: 0.9rem;
+      color: var(--white-soft);
+    }
+
+    .sidebar-left li::before {
+      content: "▹";
+      color: var(--crimson);
+      position: absolute;
+      left: 0;
+      font-size: 1rem;
+    }
+
+    .sidebar-left li strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .contact-links {
+      margin-top: auto;
+      border-top: 1px solid var(--border-light);
+      padding-top: 24px;
+      font-size: 0.9rem;
+      line-height: 2;
+      text-align: center;
+    }
+
+    .contact-links a {
+      color: var(--crimson);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--crimson);
+    }
+
+    .content-right {
+      width: 65%;
+      background: rgba(0,0,0,0.15);
+    }
+
+    .long-bio p {
+      margin-bottom: 18px;
+      font-size: 0.95rem;
+      color: var(--white-soft);
+      line-height: 1.7;
+    }
+
+    .book-row {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 10px;
+    }
+
+    .book-text { flex: 1; }
+    
+    .book-text h3 {
+      font-size: 1.6rem;
+      margin: 0 0 4px 0;
+    }
+
+    .book-text h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--crimson);
+      margin-bottom: 12px;
+    }
+
+    .book-text p {
+      color: var(--white-muted);
+      font-size: 0.85rem;
+    }
+
+    .book-cover-container {
+      width: 130px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      box-shadow: -4px 8px 16px rgba(0,0,0,0.4);
+    }
+
+    .book-cover-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .chip {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border-light);
+      border-radius: 40px;
+      padding: 4px 12px;
+      font-size: 0.7rem;
+      color: var(--white-soft);
+    }
+
+    /* ---------- FOOTER ---------- */
+    .crimson-strip {
+      height: 4px;
+      background: var(--crimson);
+    }
+    footer {
+      background: var(--navy-richer);
+      padding: 48px 24px;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      color: var(--white-muted);
+      text-decoration: none;
+      margin: 0 16px 0 0;
+      font-size: 0.9rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--crimson);
+    }
+
+    .social {
+      display: flex;
+      gap: 16px;
+    }
+    .social a {
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .social a:hover { background: var(--crimson); }
+    .social svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--white);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* ---------- RESPONSIVE & PRINT ---------- */
+    @media (max-width: 800px) {
+      .header { flex-direction: column; text-align: center; }
+      .subtitle { border-left: none; border-top: 3px solid var(--crimson); padding-left: 0; padding-top: 12px; }
+      .short-bio { max-width: 100%; }
+      .main-content { flex-direction: column; }
+      .sidebar-left, .content-right { width: 100%; border-right: none; }
+      .book-row { flex-direction: column; align-items: center; text-align: center; }
+      nav ul { display: none; }
+    }
+
+    @media print {
+      .site-header, .pdf-ribbon, footer, .crimson-strip { display: none !important; }
+      body { background: white; }
+      .backgrounder-wrapper { padding: 0; background: white; }
+      .container { border: none; box-shadow: none; background: white; margin: 0; border-radius: 0; max-width: 100%; }
+      .header, .sidebar-left { background: #f0f0f0; }
+      .content-right { background: white; }
+      .section-header { background: #e0e0e0; border-bottom: 2px solid #ae1f2c; }
+      .book-row { border: 1px solid #ccc; background: white; }
+      * { color: black !important; }
+      .sidebar-left li::before { color: #ae1f2c !important; }
+      .contact-links a { color: #ae1f2c !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="../index.html" class="logo-wrap" aria-label="FedEthics home">
+        <div class="logo-box" aria-hidden="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <span class="logo-text">FedEthics</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="#">Our story</a></li>
+          <li><a href="#">Capabilities</a></li>
+          <li><a href="../index.html#book">Book</a></li>
+          <li><a href="#" class="active">Backgrounder</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="pdf-ribbon">
+    <button id="downloadPdfBtn" class="btn-outline">Download Backgrounder (PDF)</button>
+  </div>
+
+  <div class="backgrounder-wrapper">
+    <div class="container" id="pdf-content">
+      <header class="header">
+        <div class="profile-image-container">
+          <img src="../images/headshot.jpg" alt="Celio Oliveira headshot" onerror="this.src='https://placehold.co/400x500/0a1a3a/ae1f2c?text=C.O.';">
+        </div>
+        <div class="header-titles">
+          <h1>Celio Oliveira</h1>
+          <span class="sec-label">EXECUTIVE DIRECTOR • AUTHOR • AI GOVERNANCE LEAD</span>
+          <div class="subtitle">
+            Chief Data Officer (CDO) · Global Top 100 Innovators in Data & AI 2025<br>
+            Chair, CDAO Canada Public Sector 2025 · Canadian Data Award finalist 2024
+          </div>
+        </div>
+        <div class="short-bio">
+          <h3>short bio</h3>
+          <p>Celio Oliveira is an Executive Director at the Government of Canada, leading cloud analytics and platform operations. With 20+ years in digital transformation, he champions constitutional AI, data ethics, and parliamentary accountability. Editorial board member, CDO Magazine. Frequent speaker on trustworthy public sector AI.</p>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <aside class="sidebar-left">
+          <h2 class="section-header">credentials</h2>
+          <div class="content-pad">
+            <ul>
+              <li><strong>Current role:</strong> Executive Director & Senior Manager, Cloud Analytics & Platform Operations, Government of Canada</li>
+              <li><strong>Recognition:</strong> Finalist, Canadian Data Award (2024) · Finalist, U.S. Automation Award (2019)</li>
+              <li><strong>Editorial:</strong> Member, CDO Magazine Global Editorial Board</li>
+              <li><strong>Education:</strong> Master’s (Univ. of Toronto), MBA, Project Management cert. (Ottawa)</li>
+              <li><strong>Languages:</strong> English (advanced), French (advanced), Portuguese (native)</li>
+            </ul>
+
+            <div class="presentation-topics">speaking topics</div>
+            <ul>
+              <li><strong>Responsible AI in government:</strong> operationalising ethics, fairness, transparency</li>
+              <li><strong>Data governance as strategic asset:</strong> frameworks for evidence‑based decisions</li>
+              <li><strong>Human side of digital transformation:</strong> culture change & trust in automation</li>
+              <li><strong>From analytics to action:</strong> cloud platforms & measurable public value</li>
+              <li><strong>Bridging the gap:</strong> explaining complex tech to non‑technical leaders</li>
+            </ul>
+
+            <div class="contact-links">
+              ✉ <a href="mailto:hello-bonjour@fedethics.ca">hello-bonjour@fedethics.ca</a><br>
+              🌐 <a href="https://fedethics.ca/book">fedethics.ca/book</a><br>
+              <span style="font-size:0.8rem; color:var(--white-muted);">📍 Ottawa, Canada</span>
+            </div>
+          </div>
+        </aside>
+
+        <section class="content-right">
+          <h2 class="section-header">about celio oliveira</h2>
+          <div class="content-pad long-bio">
+            <p>Celio Oliveira is a distinguished technology executive dedicated to the ethical and transparent use of data and artificial intelligence within the public sector. Currently serving as Executive Director and Senior Manager of Cloud Analytics & Platform Operations for the Government of Canada, he leads teams harnessing cloud technologies and advanced analytics to drive evidence‑based decision‑making.</p>
+            <p>With over 20 years of experience spanning digital transformation, AI governance, and data strategy, Celio is a sought‑after voice on building trustworthy AI systems. His work focuses on ensuring that innovation is balanced with strong ethical frameworks, fairness, and accountability. This commitment has earned him recognition as a finalist for the 2024 Canadian Data Award and the 2019 U.S. Automation Award. His thought leadership extends globally as a member of CDO Magazine's Editorial Board and as a frequent speaker at international conferences on data and AI.</p>
+            <p>Fluent in English, French, and Portuguese, Celio holds a Master’s degree from the University of Toronto and an MBA. He is deeply committed to knowledge sharing, helping organisations and leaders navigate the complexities of the digital age to build a more transparent and effective future.</p>
+          </div>
+
+          <h2 class="section-header">latest release</h2>
+          <div class="content-pad">
+            <div class="book-row">
+              <div class="book-text">
+                <h3>Constitutional Intelligence</h3>
+                <h4>A Decision Architecture for Trustworthy AI Governance</h4>
+                <p><span class="chip" style="margin-right:8px;">Spring 2025</span> <span class="chip">ISBN 978-1-999999-0-1</span></p>
+                <p style="margin-top:12px;">In <em>Constitutional Intelligence</em>, Oliveira presents a groundbreaking framework for embedding constitutional principles into AI governance systems. Drawing from his extensive experience in public sector digital transformation, he offers practical strategies for building AI systems that are not only efficient but also ethically sound and aligned with democratic values. The book serves as an essential guide for policymakers, technologists, and leaders navigating the complex intersection of artificial intelligence and public governance.</p>
+              </div>
+              <div class="book-cover-container">
+                <img src="../images/book-cover.jpg" alt="Constitutional Intelligence book cover" onerror="this.src='https://placehold.co/300x400/05122b/ae1f2c?text=FedEthics+book';"> 
+              </div>
+            </div>
+            <p style="text-align:right; margin-top:16px;"><a href="#" style="color:var(--crimson); text-decoration:none; border-bottom:1px dotted var(--crimson);">Order at fedethics.ca →</a></p>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="crimson-strip" aria-hidden="true"></div>
+  <footer>
+    <div class="wrap footer-inner">
+      <div style="color:var(--white-muted);">© 2026 fedethics.ca — Canada</div>
+      <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="#">Our story</a>
+        <a href="#">Capabilities</a>
+        <a href="../index.html#book">Book</a>
+        <a href="#">Backgrounder</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="social">
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      const downloadBtn = document.getElementById('downloadPdfBtn');
+      const element = document.getElementById('pdf-content');
+
+      const opt = {
+        margin:        [0.3, 0.3, 0.3, 0.3],
+        filename:      'Celio_Oliveira_FedEthics_backgrounder.pdf',
+        image:         { type: 'jpeg', quality: 0.98 },
+        html2canvas:   { scale: 1.4, letterRendering: true, useCORS: true, logging: false },
+        jsPDF:         { unit: 'in', format: 'letter', orientation: 'portrait', compress: true },
+        pagebreak:     { mode: ['css', 'legacy'] }
+      };
+
+      downloadBtn.addEventListener('click', function () {
+        const originalText = downloadBtn.innerHTML;
+        downloadBtn.innerHTML = 'Generating PDF...';
+        downloadBtn.disabled = true;
+
+        Promise.all(
+          Array.from(element.getElementsByTagName('img'))
+            .filter(img => !img.complete)
+            .map(img => new Promise(resolve => { img.onload = resolve; img.onerror = resolve; }))
+        ).then(() => {
+          return html2pdf().set(opt).from(element).save();
+        }).then(() => {
+          downloadBtn.innerHTML = originalText;
+          downloadBtn.disabled = false;
+        }).catch((error) => {
+          console.error('PDF error:', error);
+          alert('PDF generation failed. Check console.');
+          downloadBtn.innerHTML = originalText;
+          downloadBtn.disabled = false;
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
