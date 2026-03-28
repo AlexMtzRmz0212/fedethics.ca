@@ -100,4 +100,7 @@ Fix: Add a:focus, button:focus { outline: 3px solid var(--crimson-bright); }.
 - ![#ffb347](https://placehold.co/15x15/ffb347/ffb347.png) `focus-outline: 4px solid #ffb347;`
 
 
-## [Current Version](index.html) includes Author Backgrounder
+## [Version 4](Old/indexV4.html) includes Author Backgrounder
+
+
+## [Version 5 (Current)](index.html) has a newsletter subscription button.
